@@ -24,8 +24,8 @@ if (!$product) {
 <p>Price: <?= $product['price']; ?> SAR</p>
 <p><?= $product['description']; ?></p>
 
-<button onclick="addToCart(<?= $product['id']; ?>, '<?= $product['name']; ?>', <?= $product['price']; ?>)">
-  Add to Cart 🛒
+<button onclick="addToCart('<?= $product['id']; ?>', '<?= $product['name']; ?>', '<?= $product['price']; ?>')">
+    Add to Cart 🛒
 </button>
 
 <script src="js/cart.js"></script>
