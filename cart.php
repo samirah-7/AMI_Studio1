@@ -1,4 +1,36 @@
 <?php 
+
+
+
+include "config.php";
+
+if (isLoggedIn()) {
+
+    $user_id = $_SESSION['user_id'];
+
+    $stmt = $pdo->prepare("
+        SELECT products.name, products.price, cart.quantity
+        FROM cart
+        JOIN products ON cart.product_id = products.id
+        WHERE cart.user_id = ?
+    ");
+
+    $stmt->execute([$user_id]);
+    $cartItems = $stmt->fetchAll();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 include "config.php"; 
 ?>
 <!DOCTYPE html>
