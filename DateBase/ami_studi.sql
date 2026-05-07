@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `cart`
 --
+USE `ami_studi`;
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
@@ -40,6 +41,7 @@ CREATE TABLE `cart` (
 --
 -- Table structure for table `favorites`
 --
+USE `ami_studi`;
 
 CREATE TABLE `favorites` (
   `id` int(11) NOT NULL,
@@ -53,6 +55,7 @@ CREATE TABLE `favorites` (
 --
 -- Table structure for table `products`
 --
+USE `ami_studi`;
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
