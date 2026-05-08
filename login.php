@@ -30,6 +30,10 @@
         <input type="password" name="password" placeholder="Password" required class="loginin"><br><br>
         <button type="submit" class="loginbut">Login</button>
     </form>
+    <p>
+    Don't have an account?
+    <a href="register.php">Create Account</a>
+</p>
 </div>
 
 <footer class="footer">
