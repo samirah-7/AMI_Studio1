@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
     <title>Products</title>
 </head>
 <body>
@@ -41,7 +41,7 @@ $products = $stmt->fetchAll();
       View Details
     </a>
   </div>
-  <form action="add-favorite.php" method="POST">
+  <form action="add_favorite.php" method="POST">
 
   <input type="hidden" 
          name="product_id" 
