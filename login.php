@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
-<body id="loginbd">
+<body>
 
 <header id="hed">
     <img src="./image/SanMilogo.png" id="logo" class="logp">
@@ -15,8 +15,8 @@
         <ul>
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
-            <li><a href="login.php">MY ACCOUNT</a></li>
-            <li><a href="#">CONTACT</a></li>
+            <li><a href="login.php">LOG IN</a></li>
+            <li><a href="#">FAVEORET</a></li>
         </ul>
     </nav>
 </header>

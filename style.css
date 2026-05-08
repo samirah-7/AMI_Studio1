@@ -15,7 +15,7 @@
 	.box{width:30%}
 }
 
-#loginbd {
+body {
     background-color: #ffffff;
     padding: 20px;
     border: 10px;
@@ -69,7 +69,7 @@ width:200px;
 }
 #loginh3 {
     font-size: 20px;
-    color: #ffffff;
+    color: #ffff1c;
     text-align: center;
     font-family: 'Bukra', serif;
 }
@@ -141,3 +141,111 @@ select:focus {
 .footer a:hover {
 	background-color:rgb(231,133,170,0.3);
 }
+.prodiv{
+    background-color: #FFF7CC;
+    border-radius: 20px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+    }
+.prodiv h1 {
+    grid-column: 1 / -1; 
+    text-align: center;
+    color: #6a0040;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+
+.smdivpro {
+    background-color: #F9E9F1;
+    border-radius: 25px;
+    border: 1px solid #ffffff;
+    padding: 15px;
+    text-align: center;
+    color: #6a0040;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+
+.smdivpro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.smdivpro h3 {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    color: #6a0040;
+}
+
+
+.smdivpro p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #b83b5e;
+    margin: 5px 0;
+}
+
+
+.view-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background-color: #6a0040;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.view-link:hover {
+    background-color: #8f0b57;
+}
+
+table { 
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 20px;
+  }
+th, td { 
+    border: 1px solid #ddd; 
+    padding: 12px; 
+    text-align: left;
+ }
+.checkout-section { 
+    margin-top: 30px; 
+    padding: 20px; 
+    border: 2px dashed #eee; 
+    border-radius: 10px;
+ }
+.btn-remove { 
+    background-color: #ff4d4d; 
+    color: white; 
+    border: none; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+    border-radius: 5px;
+ }
+.btn-order { 
+    background-color: #28a745; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    border-radius: 5px;
+ }
+.total-box { 
+    text-align: right; 
+    margin-top: 15px; 
+    font-size: 1.2em; 
+    font-weight: bold;
+ }

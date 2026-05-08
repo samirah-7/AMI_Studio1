@@ -1,56 +1,27 @@
-<?php 
-
-
-
-include "config.php";
-
-if (isLoggedIn()) {
-
-    $user_id = $_SESSION['user_id'];
-
-    $stmt = $pdo->prepare("
-        SELECT products.name, products.price, cart.quantity
-        FROM cart
-        JOIN products ON cart.product_id = products.id
-        WHERE cart.user_id = ?
-    ");
-
-    $stmt->execute([$user_id]);
-    $cartItems = $stmt->fetchAll();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-include "config.php"; 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Ami Studio - Shopping Cart</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #f8f9fa; }
-        .checkout-section { margin-top: 30px; padding: 20px; border: 2px dashed #eee; border-radius: 10px; }
-        .btn-remove { background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
-        .btn-order { background-color: #28a745; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 16px; border-radius: 5px; }
-        .total-box { text-align: right; margin-top: 15px; font-size: 1.2em; font-weight: bold; }
-    </style>
 </head>
-<body>
+<body >
+
+<header id="hed">
+    <img src="./image/SanMilogo.png" id="logo" class="logp">
+    <p class="logp">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</p>
+    <p class="logp">a piece of art .✦ ݁˖</p>
+
+    <nav>
+        <ul>
+            <li><a href="products.php">HOME</a></li>
+            <li><a href="cart.php">CART</a></li>
+            <li><a href="login.php">LOG IN</a></li>
+            <li><a href="#">FAVEORET</a></li>
+        </ul>
+    </nav>
+</header>
 
 <div class="container">
     <h1>Your Shopping Cart 🛒</h1>
@@ -132,5 +103,48 @@ function removeItem(index) {
 document.addEventListener('DOMContentLoaded', displayCart);
 </script>
 
+<footer class="footer">
+    <p class="background">Follow us:</p>
+    <a href="https://www.instagram.com/ami.studi0?igsh=MTFrbW82OGp5ZnBydQ==">INSTAGRAM - </a>
+    <a href="https://www.tiktok.com/@ami.studi0?_r=1&_t=ZS-96AJUvVID2O">TIKTOK - </a>
+    <a href="https://wa.me/+966579810446">WHATSAPP</a>
+    <p class="background">@2026 AMI-STUDIO</p>
+</footer>
+
+<?php 
+
+
+
+include "config.php";
+
+if (isLoggedIn()) {
+
+    $user_id = $_SESSION['user_id'];
+
+    $stmt = $pdo->prepare("
+        SELECT products.name, products.price, cart.quantity
+        FROM cart
+        JOIN products ON cart.product_id = products.id
+        WHERE cart.user_id = ?
+    ");
+
+    $stmt->execute([$user_id]);
+    $cartItems = $stmt->fetchAll();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+include "config.php"; 
+?>
 </body>
 </html>
