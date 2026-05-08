@@ -17,5 +17,16 @@ $products = $stmt->fetchAll();
       View Details
     </a>
   </div>
+  <form action="add-favorite.php" method="POST">
+
+  <input type="hidden" 
+         name="product_id" 
+         value="<?= $row['id']; ?>">
+
+  <button type="submit" class="fav-btn">
+    ❤️
+  </button>
+
+</form>
 
 <?php } ?>
