@@ -1,38 +1,27 @@
-
-<?php 
-
-
-
+<?php
 include "config.php";
 
-if (isLoggedIn()) {
+if (!isLoggedIn()) {
+    echo "يرجى تسجيل الدخول لعرض سلة المشتريات.";
+    exit;
+}
 
-    $user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
+$cartItems = [];
 
+try {
     $stmt = $pdo->prepare("
         SELECT products.name, products.price, cart.quantity
         FROM cart
         JOIN products ON cart.product_id = products.id
-        WHERE cart.user_id = ?
+        WHERE cart.user_id = :user_id
     ");
-
-    $stmt->execute([$user_id]);
+    $stmt->execute([':user_id' => $user_id]);
     $cartItems = $stmt->fetchAll();
+} catch (PDOException $e) {
+    error_log("Cart error: " . $e->getMessage());
+    $errorMsg = "حدث خلل في جلب السلة، حاول لاحقاً.";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 ?>
 <!DOCTYPE html>
 <html lang="en">
