@@ -1,18 +1,17 @@
 <?php
 include "config.php";
+
+// رقم المستخدم (تأكدي أنه 1 زي ما جربنا في الداتابيز)
 $user_id = 1;
 
-$stmt = $conn->prepare("
-SELECT favorites.id AS fav_id,
-products.*
-FROM favorites
-JOIN products
-ON favorites.product_id = products.id
-WHERE favorites.user_id = ?
+// استخدمنا $pdo بدلاً من $conn عشان يختفي الخطأ
+$stmt = $pdo->prepare("
+    SELECT favorites.id AS fav_id, products.* FROM favorites 
+    JOIN products ON favorites.product_id = products.id 
+    WHERE favorites.user_id = ?
 ");
 
 $stmt->execute([$user_id]);
-
 $favorites = $stmt->fetchAll();
 ?>
 
@@ -41,30 +40,29 @@ $favorites = $stmt->fetchAll();
 
 <h1>Your Favorites ❤️</h1>
 
-<div class="favorites-container">
+<div class="prodiv">
+    <?php
+    if(count($favorites) > 0){
+        foreach($favorites as $fav){
+    ?>
+        <div class="smdivpro">
+            <div class="card-img-container">
+                <img src="DateBase/<?= $fav['image_url']; ?>" class="pro-img">
+            </div>
 
-<?php
-if(count($favorites) > 0){
+            <h3><?= $fav['name']; ?></h3>
+            <p class="price-tag"><?= $fav['price']; ?> SAR</p>
 
-foreach($favorites as $fav){
-?>
-
-<div class="card">
-
-  <img src="images/<?= $fav['image']; ?>">
-
-  <h3><?= $fav['name']; ?></h3>
-
-  <p><?= $fav['price']; ?> SAR</p>
-
-  <a href="remove-favorite.php?id=<?= $fav['fav_id']; ?>">
-
-    <button class="remove-btn">
-      Remove 
-    </button>
-
-  </a>
-
+            <a href="remove_favorite.php?id=<?= $fav['fav_id']; ?>" class="view-link" style="background-color: #ff4d4d;">
+                Remove ❌
+            </a>
+        </div>
+    <?php
+        }
+    } else {
+        echo "<p style='grid-column: 1/-1;'>No favorites yet 💔</p>";
+    }
+    ?>
 </div>
 
 <?php
