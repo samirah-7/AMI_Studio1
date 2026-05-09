@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
-    <title>Products</title>
+    <link rel="stylesheet" href="style.css?v=1.7">
+    <title>Products - Ami Studio</title>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
             <li><a href="login.php">LOG IN</a></li>
-            <li><a href="#">FAVEORET</a></li>
+            <li><a href="favorites.php">FAVORITE</a></li>
         </ul>
     </nav>
 </header>
@@ -24,38 +24,35 @@
 <?php
 include "config.php";
 
+// جلب المنتجات
 $stmt = $pdo->query("SELECT * FROM products");
 $products = $stmt->fetchAll();
 ?>
 
 <div class="prodiv">
-<h1>Products</h1>
+    <h1>Our Products 🧶</h1>
 
-<?php foreach($products as $row) { ?>
+    <?php foreach($products as $row) { ?>
+        <div class="smdivpro">
+            <div class="card-img-container">
+                <img src="DateBase/<?php echo $row['image_url']; ?>" alt="<?= $row['name']; ?>" class="pro-img">
+                
+                <form action="add_favorite.php" method="POST" class="fav-form">
+                    <input type="hidden" name="product_id" value="<?= $row['id']; ?>">
+                    <button type="submit" class="fav-heart-btn">🩷</button>
+                </form>
+            </div>
 
-  <div class="smdivpro">
-    <h3><?= $row['name']; ?></h3>
-    <p><?= $row['price']; ?> SAR</p>
+            <h3><?= $row['name']; ?></h3>
+            <p class="price-tag"><?= $row['price']; ?> SAR</p>
 
-    <a href="product-details.php?id=<?= $row['id']; ?>" class="view-link">
-      View Details
-    </a>
-  </div>
-  <form action="add_favorite.php" method="POST">
+            <a href="product-details.php?id=<?= $row['id']; ?>" class="view-link">
+                View Details ✨
+            </a>
+        </div>
+    <?php } ?>
+</div>
 
-  <input type="hidden" 
-         name="product_id" 
-         value="<?= $row['id']; ?>">
-
-  <button type="submit" class="fav-btn">
-    ❤️
-  </button>
-
-</form>
-
-<?php } ?>
-
- </div>
 <footer class="footer">
     <p class="background">Follow us:</p>
     <a href="https://www.instagram.com/ami.studi0?igsh=MTFrbW82OGp5ZnBydQ==">INSTAGRAM - </a>

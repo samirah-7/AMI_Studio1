@@ -69,7 +69,7 @@ width:200px;
 }
 #loginh3 {
     font-size: 20px;
-    color: #ffff1c;
+    color: #ffffff;
     text-align: center;
     font-family: 'Bukra', serif;
 }
@@ -86,7 +86,9 @@ width:200px;
     align-items: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	}
-
+.acc{
+    color: #5C3D32;
+}
 .loginform{
 	background-color:#ffffff;
     color:#6a0040;
@@ -96,6 +98,7 @@ width:200px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	text-align:center;
 }
+
 
 .loginin input[type="text"],
 .loginin input[type="password"] {
@@ -249,3 +252,112 @@ th, td {
     font-size: 1.2em; 
     font-weight: bold;
  }
+.dprodiv {
+    background-color: #FFD9E2;
+    border-radius: 20px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1200px;}
+/* 1. تنسيق البطاقة كاملة */
+/* تأكدي إن القوس اللي قبله مقفل } */
+
+.smdivpro {
+    background-color: #B5EAD7 !important; /* لون المينت */
+    display: inline-block !important;
+    margin: 15px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    vertical-align: top !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    text-align: center !important;
+    width: 250px !important;
+}
+
+/* 2. تصغير حاوية الصورة */
+.card-img-container {
+    background-color: #B5EAD7 !important;
+    width: 100% !important;
+    height: 200px !important; /* هذا اللي بيخلي المربع صغير */
+    overflow: hidden !important;
+    position: relative !important;
+    border-radius: 10px !important;
+}
+
+/* 3. ترويض الصورة العملاقة (أهم جزء) */
+.pro-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* يخلي الصورة تترتب داخل المربع بدون تمطيط */
+    display: block !important;
+}
+
+/* 4. تنسيق زر القلب فوق الصورة */
+.fav-heart-btn {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    cursor: pointer !important;
+    z-index: 5 !important;
+}
+/* --- تعديلات جنى الأخيرة (أمان) --- */
+
+.smdivpro {
+    background-color: #B5EAD7 !important; /* اللون المينت */
+    display: inline-block !important;
+    width: 250px !important;
+    margin: 15px !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    vertical-align: top !important;
+}
+
+.card-img-container {
+    width: 100% !important;
+    height: 200px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    border-radius: 10px !important;
+}
+
+.pro-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* زر القلب: رمادي -> وردي */
+.fav-heart-btn {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    background: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 35px !important;
+    height: 35px !important;
+    cursor: pointer !important;
+    z-index: 5 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: 0.3s all ease !important;
+    filter: grayscale(100%) brightness(1.2) !important;
+    opacity: 0.8 !important;
+}
+
+.fav-heart-btn:hover {
+    filter: grayscale(0%) !important;
+    opacity: 1 !important;
+    transform: scale(1.1) !important;
+}
