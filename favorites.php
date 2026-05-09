@@ -1,10 +1,8 @@
 <?php
 include "config.php";
 
-// رقم المستخدم (تأكدي أنه 1 زي ما جربنا في الداتابيز)
 $user_id = 1;
 
-// استخدمنا $pdo بدلاً من $conn عشان يختفي الخطأ
 $stmt = $pdo->prepare("
     SELECT favorites.id AS fav_id, products.* FROM favorites 
     JOIN products ON favorites.product_id = products.id 
@@ -29,6 +27,7 @@ $favorites = $stmt->fetchAll();
         <ul>
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
+            <li><a href="login.php">LOG IN</a></li>
             <li><a href="favorites.php">FAVORITE</a></li>
         </ul>
     </nav>
