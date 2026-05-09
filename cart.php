@@ -2,7 +2,13 @@
 include "config.php";
 
 if (!isLoggedIn()) {
-    echo "يرجى تسجيل الدخول لعرض سلة المشتريات.";
+
+    echo "<script>
+    alert('يرجى تسجيل الدخول أولاً');
+
+    window.location.href='login.php';
+    </script>";
+
     exit;
 }
 
@@ -52,7 +58,6 @@ try {
     <h1>Your Shopping Cart 🛒</h1>
     
     <div id="cart-content">
-        <!-- Rendered by JavaScript -->
     </div>
 
     <div class="checkout-section">

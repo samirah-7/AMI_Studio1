@@ -7,8 +7,6 @@ if (!isLoggedIn()) {
 }
 
 $user_id = $_SESSION['user_id'];
-
-// نجيب الكارت من localStorage باستخدام JavaScript
 ?>
 
 <script>

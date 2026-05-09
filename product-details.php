@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Products</title>
 </head>
 <body>
@@ -39,18 +39,20 @@ if (!$product) {
     die("Product not found.");
 }
 ?>
+
 <div class="dprodiv">
-<h1><?= $product['name']; ?></h1>
+    <h1><?= $product['name']; ?></h1>
 
-<img src="images/<?= $product['image']; ?>" width="200">
+    <img src="DateBase/<?= $product['image_url']; ?>" width="200">
 
-<p>Price: <?= $product['price']; ?> SAR</p>
-<p><?= $product['description']; ?></p>
+    <p>Price: <?= $product['price']; ?> SAR</p>
+    <p><?= $product['description']; ?></p>
 
-<button onclick="addToCart('<?= $product['id']; ?>', '<?= $product['name']; ?>', '<?= $product['price']; ?>')" class="addbut">
-    Add to Cart 🛒
-</button>
+    <button onclick="addToCart('<?= $product['id']; ?>', '<?= $product['name']; ?>', '<?= $product['price']; ?>')" class="addbut">
+        Add to Cart 🛒
+    </button>
 </div>
+
 <script src="js/cart.js"></script>
 
 <footer class="footer">

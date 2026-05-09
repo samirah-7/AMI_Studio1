@@ -20,7 +20,7 @@
         </ul>
     </nav>
 </header>
-
+<h1></h1>
 <div class="logindiv">
     <h2 id="loginh2">Create Account</h2>
     <h3 id="loginh3">∘₊✧──────────────────────✧₊∘</h3>
@@ -37,6 +37,14 @@
         <a href="login.php">Login</a>
     </p>
 </div>
+
+<footer class="footer">
+    <p class="background">Follow us:</p>
+    <a href="https://www.instagram.com/ami.studi0?igsh=MTFrbW82OGp5ZnBydQ==">INSTAGRAM - </a>
+    <a href="https://www.tiktok.com/@ami.studi0?_r=1&_t=ZS-96AJUvVID2O">TIKTOK - </a>
+    <a href="https://wa.me/+966579810446">WHATSAPP</a>
+    <p class="background">@2026 AMI-STUDIO</p>
+</footer>
 
 </body>
 </html>

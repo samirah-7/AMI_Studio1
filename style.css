@@ -78,6 +78,9 @@ width:200px;
 	border-radius:20px;
     border-top: 40px;
 	padding:10px;
+ width: 100%;
+    max-width: 500px;
+    margin: auto;
     grid-template-columns: repeat(auto-fill, minmax(300px, 3fr));
     gap: 15px;         
     flex-direction: row;
@@ -86,9 +89,7 @@ width:200px;
     align-items: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	}
-.acc{
-    color: #5C3D32;
-}
+
 .loginform{
 	background-color:#ffffff;
     color:#6a0040;
@@ -97,19 +98,23 @@ width:200px;
     margin-top: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	text-align:center;
+    width: 400px;
+    margin: auto;
 }
 
 
-.loginin input[type="text"],
-.loginin input[type="password"] {
-    width: 300%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #71443b;
+.loginin{
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1.5px solid #d7a7b7;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(113, 68, 59, 0.3);
+    box-shadow: 0 2px 8px rgba(113, 68, 59, 0.12);
+    box-sizing: border-box;
+    background-color: #fffdfd;
+    font-size: 16px;
 }
-
 input:focus,
 textarea:focus,
 select:focus {
@@ -263,7 +268,14 @@ th, td {
     margin: 20px auto;
     max-width: 1200px;}
 
-
+.dprodiv h1 {
+    color: #6a0040;
+    font-size: 2.5rem;
+}
+.dprodiv p {
+    font-size: 1.2rem;
+    color: #6a0040;
+}
 .smdivpro {
     background-color: #B5EAD7 !important; 
     display: inline-block !important;
@@ -277,6 +289,22 @@ th, td {
     width: 250px !important;
 }
 
+.addbut {
+  
+
+    font-family: 'Futura', sans-serif;
+    width: 100%;
+    padding: 10px;
+    background-color: #4FAF95;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
+.addbut:hover {
+    background-color: #3E947D;
+}  
 
 .card-img-container {
     background-color: #B5EAD7 !important;

@@ -24,7 +24,6 @@
 <?php
 include "config.php";
 
-// جلب المنتجات
 $stmt = $pdo->query("SELECT * FROM products");
 $products = $stmt->fetchAll();
 ?>
