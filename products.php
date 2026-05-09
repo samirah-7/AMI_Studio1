@@ -16,7 +16,7 @@
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
             <li><a href="login.php">LOG IN</a></li>
-            <li><a href="#">FAVEORET</a></li>
+            <li><a href="favorites.php">FAVEORET</a></li>
         </ul>
     </nav>
 </header>

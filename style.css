@@ -69,7 +69,7 @@ width:200px;
 }
 #loginh3 {
     font-size: 20px;
-    color: #ffff1c;
+    color: #ffffff;
     text-align: center;
     font-family: 'Bukra', serif;
 }
@@ -86,7 +86,9 @@ width:200px;
     align-items: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	}
-
+.acc{
+    color: #5C3D32;
+}
 .loginform{
 	background-color:#ffffff;
     color:#6a0040;
@@ -96,6 +98,7 @@ width:200px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	text-align:center;
 }
+
 
 .loginin input[type="text"],
 .loginin input[type="password"] {
@@ -249,3 +252,14 @@ th, td {
     font-size: 1.2em; 
     font-weight: bold;
  }
+.dprodiv {
+    background-color: #FFD9E2;
+    border-radius: 20px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+}
