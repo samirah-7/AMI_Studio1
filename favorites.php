@@ -23,6 +23,8 @@ $favorites = $stmt->fetchAll();
 
 <header id="hed">
     <img src="./image/SanMilogo.png" id="logo" class="logp">
+    <p class="logp">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</p>
+    <p class="logp">a piece of art .✦ ݁˖</p>
     <nav>
         <ul>
             <li><a href="products.php">HOME</a></li>
