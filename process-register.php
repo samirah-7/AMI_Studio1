@@ -1,30 +1,42 @@
-<?php
-include "config.php";
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Register</title>
+</head>
+<body>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+<header id="hed">
+    <img src="./image/SanMilogo.png" id="logo" class="logp">
+    <p class="logp">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</p>
+    <p class="logp">a piece of art .✦ ݁˖</p>
 
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    <nav>
+        <ul>
+            <li><a href="products.php">HOME</a></li>
+            <li><a href="cart.php">CART</a></li>
+            <li><a href="login.php">LOG IN</a></li>
+            <li><a href="favorites.php">FAVORITE</a></li>
+        </ul>
+    </nav>
+</header>
 
-    // 1️⃣ نتأكد ما فيه مستخدم مكرر
-    $check = $pdo->prepare("SELECT id FROM users WHERE username = ?");
-    $check->execute([$username]);
+<div class="logindiv">
+    <h2 id="loginh2">Create Account</h2>
+    <h3 id="loginh3">∘₊✧──────────────────────✧₊∘</h3>
 
-    if ($check->fetch()) {
-        die("Username already exists");
-    }
+    <form action="process-register.php" method="POST" class="loginform">
+        <input type="text" name="username" placeholder="Username" required class="loginin"><br><br>
+        <input type="email" name="email" placeholder="Email" required class="loginin"><br><br>
+        <input type="password" name="password" placeholder="Password" required class="loginin"><br><br>
+        <button type="submit" class="loginbut">Register</button>
+    </form>
 
-    // 2️⃣ نحفظ المستخدم
-    $stmt = $pdo->prepare("
-        INSERT INTO users (username, email, password)
-        VALUES (?, ?, ?)
-    ");
+    <p>
+        Already have an account?
+        <a href="login.php">Login</a>
+    </p>
+</div>
 
-    $stmt->execute([$username, $email, $password]);
-
-    // 3️⃣ نرجع للوجين
-    header("Location: login.php");
-    exit();
-}
-?>
+</body>
+</html>
