@@ -1,6 +1,9 @@
 <?php
+session_start();
 include "config.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -16,13 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: products.php");
         exit();
-
+        
     } else {
         echo "<script>
-        alert('Wrong username or password');
-        window.location.href='login.php';
+            alert('Wrong username or password');
+            window.location.href='login.php';
         </script>";
-
     }
 }
 ?>
