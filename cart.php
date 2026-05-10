@@ -12,7 +12,7 @@ $user_id = $_SESSION['user_id'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=1.9">
+    <link rel="stylesheet" href="style.css?v=2.0">
     <title>Ami Studio - Shopping Cart</title>
 </head>
 <body>
@@ -40,6 +40,17 @@ $user_id = $_SESSION['user_id'];
                 <input type="text" id="customer_name" name="customer_name" placeholder="Enter your full name" required 
                        style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 80%; margin-top: 10px;">
             </p>
+            <p>
+                <label for="city">City (المدينة):</label><br>
+                <input type="text" id="city" name="city" placeholder="e.g. Al-Baha / Jeddah" required 
+                       style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 80%; margin-top: 10px;">
+            </p>
+            <p>
+                <label for="redbox_point">RedBox Point (اختياري):</label><br>
+                <input type="text" id="redbox_point" name="redbox_point" placeholder="اسم أقرب خزنة ريدبوكس" 
+                       style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 80%; margin-top: 10px;">
+            </p>
+
             <input type="hidden" id="hidden_total" name="total_price" value="">
             <input type="hidden" id="hidden_details" name="order_details" value="">
             <button type="submit" class="btn-order">Confirm & Order via WhatsApp 💬</button>
@@ -49,6 +60,33 @@ $user_id = $_SESSION['user_id'];
 
 <script>
 function displayCart() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.get('status') === 'success') {
+        localStorage.removeItem('ami_cart');
+        let cartContent = document.getElementById('cart-content');
+        let checkoutSection = document.getElementById('checkout-form-container');
+        
+        cartContent.innerHTML = `
+            <div style="text-align: center; padding: 40px; background: #fff5f7; border-radius: 20px; border: 2px dashed #ffb7c5; margin-top: 20px;">
+                <h2 style="color: #ff8fa3;">Thank You! 🎀</h2>
+                <p style="font-size: 1.1em; color: #555;">Your order has been placed successfully.</p>
+                <p>Redirecting to WhatsApp to complete your order...</p>
+                <br>
+                <a href="products.php" class="btn-order" style="text-decoration: none; padding: 10px 25px; display: inline-block;">Back to Shop 🧶</a>
+            </div>
+        `;
+        if(checkoutSection) checkoutSection.style.display = "none";
+
+        const waLink = urlParams.get('wa');
+        if (waLink) {
+            setTimeout(() => {
+                window.location.href = decodeURIComponent(waLink);
+            }, 1000);
+        }
+        return;
+    }
+
     let cart = JSON.parse(localStorage.getItem('ami_cart')) || [];
     let cartContent = document.getElementById('cart-content');
     let checkoutSection = document.getElementById('checkout-form-container');
@@ -68,7 +106,7 @@ function displayCart() {
         let itemTotal = item.price * item.quantity;
         grandTotal += itemTotal;
         detailsString += `${item.name} (x${item.quantity}), `;
-        tableHTML += `<tr><td>${item.name}</td><td>${item.price}</td><td>${item.quantity}</td><td>${itemTotal}</td><td><button onclick="removeItem(${index})">Remove</button></td></tr>`;
+        tableHTML += `<tr><td>${item.name}</td><td>${item.price} SAR</td><td>${item.quantity}</td><td>${itemTotal} SAR</td><td><button class="btn-remove" onclick="removeItem(${index})">Remove</button></td></tr>`;
     });
 
     tableHTML += `</tbody></table><div class="total-box">Grand Total: ${grandTotal} SAR</div>`;
@@ -83,6 +121,7 @@ function removeItem(index) {
     localStorage.setItem('ami_cart', JSON.stringify(cart));
     displayCart();
 }
+
 document.addEventListener('DOMContentLoaded', displayCart);
 </script>
 </body>
