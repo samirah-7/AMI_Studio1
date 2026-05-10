@@ -37,13 +37,7 @@ try {
     <link rel="stylesheet" href="style.css">
     <title>Ami Studio - Shopping Cart</title>
 </head>
-<body class="<?php echo $currentTheme; ?>">
-    <!-- محتوى الصفحة -->
-    <div class="theme-switcher">
-        <button href="switch-theme.php?theme=default">🌞 فاتح</a>
-        <a href="switch-theme.php?theme=dark">🌙 داكن</a>
-       
-    </div>
+<body>
 
 <header id="hed">
     <img src="./image/SanMilogo.png" id="logo" class="logp">
