@@ -37,7 +37,13 @@ try {
     <link rel="stylesheet" href="style.css">
     <title>Ami Studio - Shopping Cart</title>
 </head>
-<body >
+<body class="<?php echo $currentTheme; ?>">
+    <!-- محتوى الصفحة -->
+    <div class="theme-switcher">
+        <button href="switch-theme.php?theme=default">🌞 فاتح</a>
+        <a href="switch-theme.php?theme=dark">🌙 داكن</a>
+       
+    </div>
 
 <header id="hed">
     <img src="./image/SanMilogo.png" id="logo" class="logp">
@@ -49,7 +55,7 @@ try {
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
             <li><a href="login.php">LOG IN</a></li>
-            <li><a href="#">FAVEORET</a></li>
+            <li><a href="favorites.php">FAVORITES</a></li>
         </ul>
     </nav>
 </header>
