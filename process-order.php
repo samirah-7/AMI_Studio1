@@ -1,46 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Ami Studio - Shopping Cart</title>
-</head>
-<body >
-
-<header id="hed">
-    <img src="./image/SanMilogo.png" id="logo" class="logp">
-    <p class="logp">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</p>
-    <p class="logp">a piece of art .✦ ݁˖</p>
-
-    <nav>
-        <ul>
-            <li><a href="products.php">HOME</a></li>
-            <li><a href="cart.php">CART</a></li>
-            <li><a href="login.php">LOG IN</a></li>
-            <li><a href="favorites.php">FAVORITES</a></li>
-        </ul>
-    </nav>
-</header>
-<div class="preor">
 <?php
 include "config.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "<h2>Ami Studio 🧶</h2>";
-    echo "<p>Thank you! Your order has been placed successfully.</p>";
-    echo "<p>We will review your payment receipt soon.</p>";
-    echo "<a href='products.php' id='back'>Back to Shop</a>";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // 1. استلام البيانات من الـ Form
+    $name = $_POST['customer_name'];
+    $city = $_POST['city'];
+    // التأكد من اسم الحقل في الفورم (redbox_point)
+    $redbox = !empty($_POST['redbox_point']) ? $_POST['redbox_point'] : 'غير محدد';
+    $total = $_POST['total_price'];
+    $details = $_POST['order_details'];
+
+    try {
+        // 2. تسجيل الطلب في قاعدة البيانات
+        // قمنا بتحديد أسماء الأعمدة يدوياً لضمان الدقة وتجنب خطأ "Column count doesn't match"
+        $stmt = $pdo->prepare("INSERT INTO orders (customer_name, city, redbox_point, total_price, order_details) VALUES (?, ?, ?, ?, ?)");
+        
+        // تنفيذ الإرسال
+        $stmt->execute([$name, $city, $redbox, $total, $details]);
+        
+        // الحصول على رقم الطلب التلقائي
+        $order_id = $pdo->lastInsertId();
+
+        // 3. تجهيز بيانات الواتساب
+        $phone = "966579810446"; 
+        $message = "مرحباً Ami Studio ✨%0A";
+        $message .= "طلب جديد رقم: *" . $order_id . "*%0A";
+        $message .= "الاسم: " . $name . "%0A";
+        $message .= "المدينة: " . $city . "%0A";
+        $message .= "نقطة ريدبوكس: " . $redbox . "%0A";
+        $message .= "الطلبات: " . $details . "%0A";
+        $message .= "الإجمالي: " . $total . " SAR";
+
+        // تجهيز الرابط
+        $whatsapp_url = "https://wa.me/$phone?text=$message";
+
+        // 4. التوجيه الذكي لصفحة السلة مع علامة النجاح ورابط الواتساب
+        header("Location: cart.php?status=success&wa=" . urlencode($whatsapp_url));
+        exit();
+
+    } catch (PDOException $e) {
+        // في حال وجود خطأ في الداتابيز، سيطبع لكِ السبب بدقة
+        die("Database Error: " . $e->getMessage());
+    }
 }
 ?>
-</div>
-<footer class="footer">
-    <p class="background">Follow us:</p>
-    <a href="https://www.instagram.com/ami.studi0?igsh=MTFrbW82OGp5ZnBydQ==">INSTAGRAM - </a>
-    <a href="https://www.tiktok.com/@ami.studi0?_r=1&_t=ZS-96AJUvVID2O">TIKTOK - </a>
-    <a href="https://wa.me/+966579810446">WHATSAPP</a>
-    <p class="background">@2026 AMI-STUDIO</p>
-</footer>
-
-</body>
-</html>

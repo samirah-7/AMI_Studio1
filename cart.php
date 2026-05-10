@@ -2,125 +2,117 @@
 include "config.php";
 
 if (!isLoggedIn()) {
-
-    echo "<script>
-    alert('يرجى تسجيل الدخول أولاً');
-
-    window.location.href='login.php';
-    </script>";
-
+    echo "<script>alert('يرجى تسجيل الدخول أولاً'); window.location.href='login.php';</script>";
     exit;
 }
-
 $user_id = $_SESSION['user_id'];
-$cartItems = [];
-
-try {
-    $stmt = $pdo->prepare("
-        SELECT products.name, products.price, cart.quantity
-        FROM cart
-        JOIN products ON cart.product_id = products.id
-        WHERE cart.user_id = :user_id
-    ");
-    $stmt->execute([':user_id' => $user_id]);
-    $cartItems = $stmt->fetchAll();
-} catch (PDOException $e) {
-    error_log("Cart error: " . $e->getMessage());
-    $errorMsg = "حدث خلل في جلب السلة، حاول لاحقاً.";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2.0">
     <title>Ami Studio - Shopping Cart</title>
 </head>
 <body>
 
 <header id="hed">
     <img src="./image/SanMilogo.png" id="logo" class="logp">
-    <p class="logp">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</p>
-    <p class="logp">a piece of art .✦ ݁˖</p>
-
     <nav>
         <ul>
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
-            <li><a href="login.php">LOG IN</a></li>
-            <li><a href="favorites.php">FAVORITES</a></li>
+            <li><a href="favorites.php">FAVORITE</a></li>
         </ul>
     </nav>
 </header>
 
 <div class="container">
     <h1>Your Shopping Cart 🛒</h1>
-    
-    <div id="cart-content">
-    </div>
+    <div id="cart-content"></div>
 
-    <div class="checkout-section">
-        <h3>Order Confirmation</h3>
-        <form action="process-order.php" method="POST" enctype="multipart/form-data">
+    <div class="checkout-section" id="checkout-form-container" style="display:none;">
+        <h3>Order Confirmation ✨</h3>
+        <form action="process-order.php" method="POST">
             <p>
-                <label for="receipt">Upload Payment Receipt (PDF):</label><br><br>
-                <input type="file" id="receipt" name="receipt" accept=".pdf" required>
+                <label for="customer_name">Your Name:</label><br>
+                <input type="text" id="customer_name" name="customer_name" placeholder="Enter your full name" required 
+                       style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 80%; margin-top: 10px;">
             </p>
-            <button type="submit" class="btn-order">Complete Purchase ✅</button>
+            <p>
+                <label for="city">City (المدينة):</label><br>
+                <input type="text" id="city" name="city" placeholder="e.g. Al-Baha / Jeddah" required 
+                       style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 80%; margin-top: 10px;">
+            </p>
+            <p>
+                <label for="redbox_point">RedBox Point (اختياري):</label><br>
+                <input type="text" id="redbox_point" name="redbox_point" placeholder="اسم أقرب خزنة ريدبوكس" 
+                       style="padding: 10px; border-radius: 10px; border: 1px solid #ddd; width: 80%; margin-top: 10px;">
+            </p>
+
+            <input type="hidden" id="hidden_total" name="total_price" value="">
+            <input type="hidden" id="hidden_details" name="order_details" value="">
+            <button type="submit" class="btn-order">Confirm & Order via WhatsApp 💬</button>
         </form>
     </div>
 </div>
 
 <script>
 function displayCart() {
-    let cart = JSON.parse(localStorage.getItem('ami_cart')) || [];
-    let cartContent = document.getElementById('cart-content');
+    const urlParams = new URLSearchParams(window.location.search);
     
-    if (cart.length === 0) {
-        cartContent.innerHTML = "<p>Your cart is empty. <a href='products.php'>Go shopping!</a></p>";
+    if (urlParams.get('status') === 'success') {
+        localStorage.removeItem('ami_cart');
+        let cartContent = document.getElementById('cart-content');
+        let checkoutSection = document.getElementById('checkout-form-container');
+        
+        cartContent.innerHTML = `
+            <div style="text-align: center; padding: 40px; background: #fff5f7; border-radius: 20px; border: 2px dashed #ffb7c5; margin-top: 20px;">
+                <h2 style="color: #ff8fa3;">Thank You! 🎀</h2>
+                <p style="font-size: 1.1em; color: #555;">Your order has been placed successfully.</p>
+                <p>Redirecting to WhatsApp to complete your order...</p>
+                <br>
+                <a href="products.php" class="btn-order" style="text-decoration: none; padding: 10px 25px; display: inline-block;">Back to Shop 🧶</a>
+            </div>
+        `;
+        if(checkoutSection) checkoutSection.style.display = "none";
+
+        const waLink = urlParams.get('wa');
+        if (waLink) {
+            setTimeout(() => {
+                window.location.href = decodeURIComponent(waLink);
+            }, 1000);
+        }
         return;
     }
 
-    let tableHTML = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
+    let cart = JSON.parse(localStorage.getItem('ami_cart')) || [];
+    let cartContent = document.getElementById('cart-content');
+    let checkoutSection = document.getElementById('checkout-form-container');
+    
+    if (cart.length === 0) {
+        cartContent.innerHTML = "<p>Your cart is empty. <a href='products.php'>Go shopping!</a></p>";
+        checkoutSection.style.display = "none";
+        return;
+    }
 
+    checkoutSection.style.display = "block";
+    let tableHTML = `<table><thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th><th>Action</th></tr></thead><tbody>`;
     let grandTotal = 0;
+    let detailsString = "";
 
     cart.forEach((item, index) => {
         let itemTotal = item.price * item.quantity;
         grandTotal += itemTotal;
-        tableHTML += `
-            <tr>
-                <td>${item.name}</td>
-                <td>${item.price} SAR</td>
-                <td>${item.quantity}</td>
-                <td>${itemTotal} SAR</td>
-                <td><button class="btn-remove" onclick="removeItem(${index})">Remove</button></td>
-            </tr>
-        `;
+        detailsString += `${item.name} (x${item.quantity}), `;
+        tableHTML += `<tr><td>${item.name}</td><td>${item.price} SAR</td><td>${item.quantity}</td><td>${itemTotal} SAR</td><td><button class="btn-remove" onclick="removeItem(${index})">Remove</button></td></tr>`;
     });
 
-    tableHTML += `
-            </tbody>
-        </table>
-        <div class="total-box">
-            Grand Total: ${grandTotal} SAR
-        </div>
-    `;
-
+    tableHTML += `</tbody></table><div class="total-box">Grand Total: ${grandTotal} SAR</div>`;
     cartContent.innerHTML = tableHTML;
+    document.getElementById('hidden_total').value = grandTotal;
+    document.getElementById('hidden_details').value = detailsString;
 }
 
 function removeItem(index) {
@@ -132,14 +124,5 @@ function removeItem(index) {
 
 document.addEventListener('DOMContentLoaded', displayCart);
 </script>
-
-<footer class="footer">
-    <p class="background">Follow us:</p>
-    <a href="https://www.instagram.com/ami.studi0?igsh=MTFrbW82OGp5ZnBydQ==">INSTAGRAM - </a>
-    <a href="https://www.tiktok.com/@ami.studi0?_r=1&_t=ZS-96AJUvVID2O">TIKTOK - </a>
-    <a href="https://wa.me/+966579810446">WHATSAPP</a>
-    <p class="background">@2026 AMI-STUDIO</p>
-</footer>
-
 </body>
 </html>
