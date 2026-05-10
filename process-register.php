@@ -48,3 +48,39 @@
 
 </body>
 </html>
+<?php
+include "config.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $username = $_POST['username'];
+    $email    = $_POST['email'];
+    $password = $_POST['password'];
+
+    // التحقق إذا اليوزر موجود مسبقًا
+    $check = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+    $check->execute([$username]);
+
+    if ($check->rowCount() > 0) {
+        echo "<script>
+            alert('اسم المستخدم موجود مسبقًا');
+            window.location.href='register.php';
+        </script>";
+        exit();
+    }
+
+    // إدخال المستخدم الجديد
+    $stmt = $pdo->prepare("
+        INSERT INTO users (username, email, password)
+        VALUES (?, ?, ?)
+    ");
+    $stmt->execute([$username, $email, $password]);
+
+    echo "<script>
+        alert('تم إنشاء الحساب بنجاح');
+        window.location.href='login.php';
+    </script>";
+    exit();
+}
+?>
+

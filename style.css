@@ -224,26 +224,25 @@ table {
     margin-top: 20px;
   }
 th, td { 
-    border: 1px solid #ddd; 
+    border: 1px solid #6a0040; 
     padding: 12px; 
     text-align: left;
  }
-.checkout-section { 
-    margin-top: 30px; 
-    padding: 20px; 
-    border: 2px dashed #eee; 
-    border-radius: 10px;
- }
-.btn-remove { 
-    background-color: #ff4d4d; 
-    color: white; 
+ th{
+	background-color:#6a0040;
+	color:#ffffff;
+}
+
+.btn-remove {
+    background-color: #E96C86; 
+    color: white;
     border: none; 
     padding: 5px 10px; 
     cursor: pointer; 
     border-radius: 5px;
- }
+	}
 .btn-order { 
-    background-color: #28a745; 
+    background-color: #4FAF95; 
     color: white; 
     border: none; 
     padding: 10px 20px; 
@@ -251,6 +250,15 @@ th, td {
     font-size: 16px; 
     border-radius: 5px;
  }
+
+.checkout-section { 
+    margin-top: 30px; 
+    padding: 20px; 
+    border: 2px dashed #ffcdeb; 
+    border-radius: 10px;
+ }
+
+
 .total-box { 
     text-align: right; 
     margin-top: 15px; 
@@ -386,3 +394,42 @@ th, td {
     opacity: 1 !important;
     transform: scale(1.1) !important;
 }
+
+.container{
+    color: #8f0b57 ;
+}
+.btn-order{
+    background-color: #28a745; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    border-radius: 5px; 
+}
+.but-ordar:hover {
+    background-color: #3E947D;
+}  
+
+.preor {
+    background-color: #fae6ff;
+    border-radius: 20px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+    color: #4a1e58;
+}
+
+.preor a:hover{
+	background-color:#eeacff;
+	}
+.preor a{
+	color:#5a006a; text-decoration:none;
+	font-weight: bold;
+    font-size: 15px;
+	}
+	
