@@ -84,6 +84,31 @@ include "config.php";
             font-weight: bold;
             transition: 0.3s;
         }
+        
+        /* تنسيق أزرار الترقيم */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0 20px;
+            flex-wrap: wrap;
+        }
+        .pagination a {
+            background: #f0f0f0;
+            padding: 8px 14px;
+            text-decoration: none;
+            color: #76524b;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .pagination a.active {
+            background: #ff8fa3;
+            color: white;
+        }
+        .pagination a:hover:not(.active) {
+            background: #ffb7c5;
+        }
     </style>
 </head>
 <body onload="window.scrollTo(0, 0);">
@@ -124,6 +149,7 @@ include "config.php";
             </p>
         </div>
 
+<<<<<<< Updated upstream
         <div class="intro-image">
             <img src="./image/our-story.jpg" alt="Ami Studio Story">
         </div>
@@ -137,6 +163,24 @@ include "config.php";
 
 <?php
 $stmt = $pdo->query("SELECT * FROM products");
+=======
+// -------------------- Pagination settings --------------------
+$limit = 4;   // عدد المنتجات في كل صفحة (حسب طلبك)
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
+
+// جلب إجمالي عدد المنتجات لحساب عدد الصفحات
+$totalStmt = $pdo->query("SELECT COUNT(*) FROM products");
+$totalProducts = $totalStmt->fetchColumn();
+$totalPages = ceil($totalProducts / $limit);
+
+// جلب المنتجات الخاصة بالصفحة الحالية فقط
+$stmt = $pdo->prepare("SELECT * FROM products LIMIT :limit OFFSET :offset");
+$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+>>>>>>> Stashed changes
 $products = $stmt->fetchAll();
 ?>
 
@@ -163,8 +207,51 @@ $products = $stmt->fetchAll();
             </button>
         </div>
     <?php } ?>
+
+    <!-- ================= PAGINATION LINKS ================= -->
+    <?php if ($totalPages > 1): ?>
+    <div class="pagination">
+        <?php if ($page > 1): ?>
+            <a href="?page=<?= $page-1 ?>">&laquo; السابق</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="?page=<?= $i ?>" class="<?= ($i == $page) ? 'active' : '' ?>"><?= $i ?></a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="?page=<?= $page+1 ?>">التالي &raquo;</a>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
 </div>
 
+<<<<<<< Updated upstream
+=======
+<!-- باقي المحتوى (مودال السلة، الفوتر، والسكريبتات) كما هو بدون تغيير -->
+<div id="cart-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; width: 350px; position: relative; border: 2px solid #ffb7c5; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+        <h3 style="color: #ff8fa3; margin-bottom: 10px;">Added to Cart! ✨</h3>
+        <p style="color: #666;">Your item is ready for its new home.</p>
+        
+        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <a href="cart.php" style="background: #ff8fa3; color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: bold; display: block;">Checkout Now (إتمام الطلب)</a>
+            <button onclick="closeModal()" style="background: #f0f0f0; border: none; padding: 10px; border-radius: 10px; cursor: pointer; color: #555;">Continue Shopping (إكمال التسوق)</button>
+        </div>
+
+        <div id="timer-bar" style="height: 5px; background: #ffb7c5; width: 100%; position: absolute; bottom: 0; left: 0; border-radius: 0 0 20px 20px; transition: width 3s linear;"></div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p class="background">Follow us:</p>
+    <a href="https://www.instagram.com/ami.studi0">INSTAGRAM - </a>
+    <a href="https://www.tiktok.com/@ami.studi0">TIKTOK - </a>
+    <a href="https://wa.me/+966579810446">WHATSAPP</a>
+    <p class="background">@2026 AMI-STUDIO</p>
+</footer>
+
+>>>>>>> Stashed changes
 <script>
 // كود السلة وتحديث الشارة يبقى كما هو
 function updateCartBadge() {
