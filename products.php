@@ -5,111 +5,9 @@ include "config.php";
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.9">
+    <link rel="stylesheet" href="style.css">
     <title>Products - Ami Studio</title>
-    <style>
-        body, h1, h2, h3, p, a, button {
-            font-family: 'Tajawal', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* تنسيق الأسماء بلون وردي مميز */
-        .highlight {
-            color: #ff4d6d; /* وردي أغمق شوي عشان يبرز */
-            font-weight: 700;
-        }
-
-        .intro-section {
-            background-color: #fff5f7;
-            padding: 80px 20px;
-            text-align: center;
-            border-bottom: 2px dashed #ffb7c5;
-        }
-
-        .intro-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            direction: rtl; 
-        }
-
-        .intro-text {
-            flex: 1.2;
-            min-width: 300px;
-            text-align: right;
-        }
-
-        .intro-image {
-            flex: 0.8;
-            min-width: 300px;
-        }
-
-        .intro-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 40px;
-            border: 8px solid white;
-            box-shadow: 0 15px 30px rgba(255, 183, 197, 0.4);
-        }
-
-        /* تنسيق عنوان الكولكشن */
-        .collection-header {
-            width: 100%;
-            text-align: center;
-            margin: 60px 0 40px 0;
-        }
-
-        .collection-header h2 {
-            font-size: 3.8rem;
-            color: #ff8fa3;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-        }
-
-        .scroll-link {
-            display: inline-block;
-            margin-top: 40px;
-            color: #ff8fa3;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        
-        /* تنسيق أزرار الترقيم */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 40px 0 20px;
-            flex-wrap: wrap;
-        }
-        .pagination a {
-            background: #f0f0f0;
-            padding: 8px 14px;
-            text-decoration: none;
-            color: #76524b;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .pagination a.active {
-            background: #ff8fa3;
-            color: white;
-        }
-        .pagination a:hover:not(.active) {
-            background: #ffb7c5;
-        }
-    </style>
+    
 </head>
 <body onload="window.scrollTo(0, 0);">
 
@@ -125,13 +23,13 @@ include "config.php";
         <ul>
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php" style="position: relative;">CART 🛒 <span id="cart-count">0</span></a></li>
-            <li><a href="login.php">LOG IN</a></li>
+            <li><a href="account.php">MY ACCOUNT</a></li>
             <li><a href="favorites.php">FAVORITE</a></li>
         </ul>
     </nav>
 </header>
-
-<section class="intro-section">
+<H4></H4>
+<div class="intro-div">
     <div class="intro-container">
         <div class="intro-text">
             <h1 style="color: #ff8fa3; font-size: 2.8em; margin-bottom: 25px;">حكاية خيط وجمعة بنات.. قصة <span class="highlight">Ami Studio</span> ✨</h1>
@@ -149,7 +47,6 @@ include "config.php";
             </p>
         </div>
 
-<<<<<<< Updated upstream
         <div class="intro-image">
             <img src="./image/our-story.jpg" alt="Ami Studio Story">
         </div>
@@ -159,11 +56,10 @@ include "config.php";
         تصفحي منتجاتنا المصنوعة بحب ✨
         <div style="font-size: 2.5em;">👇</div>
     </a>
-</section>
+</div>
 
 <?php
 $stmt = $pdo->query("SELECT * FROM products");
-=======
 // -------------------- Pagination settings --------------------
 $limit = 4;   // عدد المنتجات في كل صفحة (حسب طلبك)
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -180,7 +76,6 @@ $stmt = $pdo->prepare("SELECT * FROM products LIMIT :limit OFFSET :offset");
 $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
->>>>>>> Stashed changes
 $products = $stmt->fetchAll();
 ?>
 
@@ -226,8 +121,6 @@ $products = $stmt->fetchAll();
     <?php endif; ?>
 </div>
 
-<<<<<<< Updated upstream
-=======
 <!-- باقي المحتوى (مودال السلة، الفوتر، والسكريبتات) كما هو بدون تغيير -->
 <div id="cart-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
     <div style="background: white; padding: 30px; border-radius: 20px; text-align: center; width: 350px; position: relative; border: 2px solid #ffb7c5; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
@@ -251,7 +144,6 @@ $products = $stmt->fetchAll();
     <p class="background">@2026 AMI-STUDIO</p>
 </footer>
 
->>>>>>> Stashed changes
 <script>
 // كود السلة وتحديث الشارة يبقى كما هو
 function updateCartBadge() {
