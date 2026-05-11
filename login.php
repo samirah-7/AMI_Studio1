@@ -2,11 +2,14 @@
 session_start();
 ?>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>Login - Ami Studio</title>
 </head>
 <body>
 
@@ -25,20 +28,25 @@ session_start();
     </nav>
 </header>
 
-<h1></h1>
-<div class="logindiv">
+<div class="logindiv" style="margin-top: 50px;">
     <h2 id="loginh2">Login</h2>
     <h3 id="loginh3">∘₊✧──────────────────────✧₊∘</h3>
+
+    <?php if (isset($_GET['error'])): ?>
+        <p style="color: #ff4d6d; background: #fff0f3; padding: 10px; border-radius: 10px;">
+            <?php echo htmlspecialchars($_GET['error']); ?>
+        </p>
+    <?php endif; ?>
 
     <form action="process-login.php" method="POST" class="loginform">
         <input type="text" name="username" placeholder="Username" required class="loginin"><br><br>
         <input type="password" name="password" placeholder="Password" required class="loginin"><br><br>
-        <button type="submit" class="loginbut">Login</button>
+        <button type="submit" class="loginbut" style="background-color: #ff8fa3; color: white; border: none; padding: 10px 30px; border-radius: 20px; cursor: pointer;">Login</button>
     </form>
 
-    <p>
-        Don't have an account?
-        <a href="process-register.php">Create Account</a>
+    <p style="margin-top: 20px;">
+        Don't have an account? 
+        <a href="register.php" style="color: #ff8fa3; text-decoration: none; font-weight: bold;">Create Account</a>
     </p>
 </div>
 
