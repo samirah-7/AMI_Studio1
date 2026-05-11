@@ -432,4 +432,33 @@ th, td {
 	font-weight: bold;
     font-size: 15px;
 	}
-	
+
+.divo{
+    background-color: #FFF7CC;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px ;
+    max-width: 1200px;
+    }
+.divo h1 {
+    grid-column: 1 / -1; 
+    text-align: center;
+    color: #8f0b57;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}  
+.divo table { 
+    width: 100%; 
+    margin-top: 20px;
+    border-radius: 25px;
+  }
+.divo th, .divo td { 
+    border: 1px solid #B5EAD7; 
+    padding: 8px;
+    text-align: center;
+ }
+ .divo th{
+	background-color:#B5EAD7;
+	color:#38b688;
+}

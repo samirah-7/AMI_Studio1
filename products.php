@@ -31,7 +31,7 @@
         <ul>
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php" style="position: relative;">CART 🛒 <span id="cart-count">0</span></a></li>
-            <li><a href="login.php">LOG IN</a></li>
+            <li><a href="account.php">MY ACCOUNT</a></li>
             <li><a href="favorites.php">FAVORITE</a></li>
         </ul>
     </nav>
