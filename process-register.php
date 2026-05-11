@@ -15,7 +15,7 @@
         <ul>
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
-            <li><a href="login.php">LOG IN</a></li>
+            <li><a href="account.php">MY ACCOUNT</a></li>
             <li><a href="favorites.php">FAVORITE</a></li>
         </ul>
     </nav>
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email    = $_POST['email'];
     $password = $_POST['password'];
 
-    // التحقق إذا اليوزر موجود مسبقًا
+    
     $check = $pdo->prepare("SELECT * FROM users WHERE username = ?");
     $check->execute([$username]);
 
@@ -69,7 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // إدخال المستخدم الجديد
+    $stmt = $pdo->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, 'user')");
+
+
     $stmt = $pdo->prepare("
         INSERT INTO users (username, email, password)
         VALUES (?, ?, ?)

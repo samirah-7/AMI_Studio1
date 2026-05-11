@@ -1,5 +1,6 @@
 <?php
 include "config.php";
+$clear_cart = isset($_GET['order_success']) ? true : false;
 
 if (!isLoggedIn()) {
     echo "<script>alert('يرجى تسجيل الدخول أولاً'); window.location.href='login.php';</script>";
@@ -23,6 +24,7 @@ $user_id = $_SESSION['user_id'];
         <ul>
             <li><a href="products.php">HOME</a></li>
             <li><a href="cart.php">CART</a></li>
+            <li><a href="account.php">MY ACCOUNT</a></li>
             <li><a href="favorites.php">FAVORITE</a></li>
         </ul>
     </nav>
@@ -54,6 +56,7 @@ $user_id = $_SESSION['user_id'];
             <input type="hidden" id="hidden_total" name="total_price" value="">
             <input type="hidden" id="hidden_details" name="order_details" value="">
             <button type="submit" class="btn-order">Confirm & Order via WhatsApp 💬</button>
+            <input type="hidden" id="cart_json" name="cart_json">
         </form>
     </div>
 </div>
@@ -108,9 +111,10 @@ function displayCart() {
         detailsString += `${item.name} (x${item.quantity}), `;
         tableHTML += `<tr><td>${item.name}</td><td>${item.price} SAR</td><td>${item.quantity}</td><td>${itemTotal} SAR</td><td><button class="btn-remove" onclick="removeItem(${index})">Remove</button></td></tr>`;
     });
-
     tableHTML += `</tbody></table><div class="total-box">Grand Total: ${grandTotal} SAR</div>`;
     cartContent.innerHTML = tableHTML;
+    let cartJSON = JSON.stringify(cart);
+    document.getElementById('cart_json').value = cartJSON;
     document.getElementById('hidden_total').value = grandTotal;
     document.getElementById('hidden_details').value = detailsString;
 }
@@ -120,6 +124,16 @@ function removeItem(index) {
     cart.splice(index, 1);
     localStorage.setItem('ami_cart', JSON.stringify(cart));
     displayCart();
+}
+// إذا كان هناك order_success=1 في الرابط، امسح localStorage وعدل الرابط
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('order_success') === '1') {
+    localStorage.removeItem('ami_cart');
+    // إزالة المعامل من الرابط بدون إعادة تحميل الصفحة
+    let newUrl = window.location.pathname;
+    window.history.replaceState({}, document.title, newUrl);
+    // عرض رسالة نجاح
+    alert("تم تقديم الطلب بنجاح! شكراً لك.");
 }
 
 document.addEventListener('DOMContentLoaded', displayCart);
