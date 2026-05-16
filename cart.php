@@ -21,6 +21,8 @@ $user_id = $_SESSION['user_id'];
 
 <header id="hed">
     <img src="./image/SanMilogo.png" id="logo" class="logp">
+    <p class="logp">⊹₊˚‧︵‿₊୨ᰔ୧₊‿︵‧˚₊⊹</p>
+    <p class="logp">a piece of art .✦ ݁˖</p>
     <nav>
         <ul>
             <li><a href="products.php">HOME</a></li>
@@ -30,7 +32,7 @@ $user_id = $_SESSION['user_id'];
         </ul>
     </nav>
 </header>
-
+<h5></h5>
 <div class="container" style="padding-top: 50px;">
     <h1 style="color: #ff8fa3; margin-bottom: 30px;">Your Shopping Cart 🛒</h1>
     
@@ -179,6 +181,13 @@ document.addEventListener('DOMContentLoaded', displayCart);
     table th { font-family: 'Tajawal', sans-serif; }
     .btn-order:hover { background: #218838 !important; transform: scale(1.02); transition: 0.2s; }
 </style>
+<footer class="footer">
+    <p class="background">Follow us:</p>
+    <a href="https://www.instagram.com/ami.studi0">INSTAGRAM - </a>
+    <a href="https://www.tiktok.com/@ami.studi0">TIKTOK - </a>
+    <a href="https://wa.me/+966579810446">WHATSAPP</a>
+    <p class="background">@2026 AMI-STUDIO</p>
+</footer>
 
 </body>
 </html>
