@@ -16,7 +16,7 @@ $orders = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>طلباتي</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="usestyle.css">
 </head>
 <header id="hed">
     <img src="../image/SanMilogo.png" id="logo" class="logp">
@@ -34,7 +34,7 @@ $orders = $stmt->fetchAll();
 </header>
 
 <h1></h1>
-<div class="divo">
+<div class="divo1">
     <h1>My Orders</h1>
     <?php if (count($orders) > 0): ?>
         <table border="1">

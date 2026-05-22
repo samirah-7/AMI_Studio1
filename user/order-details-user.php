@@ -26,7 +26,7 @@ $items = $stmt->fetchAll();
 <html>
 <head>
     <title>order details #<?= $orderId ?></title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="usestyle.css">
 </head>
 <body>
             
@@ -46,7 +46,7 @@ $items = $stmt->fetchAll();
 </header>
 
 <h1></h1>
-<div class="divo">
+<div class="divo1">
     <h1>order details #<?= $orderId ?></h1>
     <p><strong>date:</strong> <?= $order['order_date'] ?></p>
     <p><strong>total:</strong> <?= $order['total'] ?> SAR</p>

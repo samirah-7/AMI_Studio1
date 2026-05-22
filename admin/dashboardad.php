@@ -18,7 +18,7 @@ if ($_SESSION['role'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <title>Admin </title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="adstyle.css">
 </head>
 <body>
     

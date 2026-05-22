@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="adstyle.css">
 </head>
 <body>
     <header id="hed">
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </header>
 
 <h1></h1>
-<div class="divo">
+<div class="divo1">
     <h1>Edit Product: <?= htmlspecialchars($product['name']) ?></h1>
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">

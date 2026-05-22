@@ -13,7 +13,7 @@ if ($_SESSION['role'] === 'admin') {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="usestyle.css">
     <title>user</title>
 </head>
 <body>
@@ -36,8 +36,15 @@ if ($_SESSION['role'] === 'admin') {
 <h1></h1>
 <div class="divo">
     <h1>Hello, <?php echo $_SESSION['username']; ?> !</h1>
-    <a href="orders.php">View Orders</a>
-    <a href="../logout.php">Logout</a>
+    <nav>
+        <ul>
+            <li><a href="../products.php">Browse Products</a></li>
+            <li><a href="../cart.php">View Cart</a></li>
+            <li><a href="../favorites.php">View Favorites</a></li>
+            <li><a href="orders.php">View Orders</a></li>
+            <li><a href="../logout.php">Logout</a></li>
+        </ul>
+    </nav>
 </div>
 
 <footer class="footer">

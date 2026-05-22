@@ -13,7 +13,7 @@ $orders = $stmt->fetchAll();
 <html>
 <head>
     <title>Manage Orders</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="adstyle.css">
 </head>
 <body>
     
@@ -33,7 +33,7 @@ $orders = $stmt->fetchAll();
 </header>
 
 <h1></h1>
-<div class="divo">
+<div class="divo1">
 
     <h1>All Orders</h1>
     <table border="1">

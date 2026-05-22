@@ -13,7 +13,7 @@ $users = $stmt->fetchAll();
 <html>
 <head>
     <title>Manage Users</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="adstyle.css">
 </head>
 <body>
         
@@ -33,7 +33,7 @@ $users = $stmt->fetchAll();
 </header>
 
 <h1></h1>
-<div class="divo">
+<div class="divo1">
     <h1>All Users</h1>
     <table border="1">
         <tr>

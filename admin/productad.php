@@ -13,7 +13,7 @@ $products = $stmt->fetchAll();
 <html>
 <head>
     <title>orders</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="adstyle.css">
 </head>
 <body>
     <header id="hed">
@@ -30,7 +30,7 @@ $products = $stmt->fetchAll();
         </ul>
     </nav>
 </header>
-<div class="divo"> 
+<div class="divo1"> 
     <h1>Product Manager</h1>
     <br><a href="product-add.php">Add Product</a><br>
     <table>
@@ -65,6 +65,7 @@ $products = $stmt->fetchAll();
                     <td><?= $product['featured'] ? 'yes' : 'no' ?></td>
                     <td class="actions">
                         <a href="product-edit.php?id=<?= $product['id'] ?>">Edit</a>
+                        |
                         <a href="product-delete.php?id=<?= $product['id'] ?>" onclick="return confirm('Are you sure ?')">Delete</a>
                     </td>
                 </tr>

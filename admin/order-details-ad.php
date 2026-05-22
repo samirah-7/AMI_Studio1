@@ -19,7 +19,7 @@ $items = $stmt->fetchAll();
 <html>
 <head>
     <title>order details #<?= $orderId ?></title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="adstyle.css">
 </head>
 <body>
             

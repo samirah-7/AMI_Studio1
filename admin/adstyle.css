@@ -1,0 +1,158 @@
+@font-face {
+    font-family: 'Futura';
+    src: url('fonts/Futura-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Bukra';
+    src: url('fonts/29LTBukra-Bold.woff2');
+}
+
+@media(max-width:600px){
+	.box{width:90%}
+}
+@media(max-width:900px){
+	.box{width:30%}
+}
+
+body {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 10px;
+    text-align: center;
+    display: flex;              
+    flex-direction: column; 
+    font-family: 'Futura', sans-serif;
+}
+li{
+	display:inline;
+	margin: 0 20px;
+	}
+Ul{
+	background-color:rgb(231,133,170);
+	border-radius:25px;
+}
+a:hover{
+	background-color:#ffffff;
+	}
+a{
+	color:#6a0040; text-decoration:none;
+	font-weight: bold;
+    font-size: 15px;
+	}
+#hed a{
+    font-size: 25px;
+}	
+#hed{
+    background-color: #FFD9E2;
+    text-align:center;
+    padding:20px;
+    border-radius:25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	color:#6a0040;
+}
+#logo{
+width:200px;
+}
+.background{
+	text-align:center;
+	color:#6a0040;
+}
+.logp{
+    color:#6a0040;
+    font-family: 'Bukra', serif;
+    display: inline;
+}
+
+.footer{
+	background-color:#FFD9E2;
+    color:#6a0040;
+	border-radius:20px;
+    padding:10px;
+    margin-top: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	text-align:center;
+}
+.footer a:hover {
+	background-color:rgb(231,133,170,0.3);
+}
+
+
+.divo{
+    background-color: #DDF7F0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px ;
+    max-width: 1200px;
+    }
+
+.divo h1 , .divo h2{
+    grid-column: 1 / -1; 
+    text-align: center;
+    color: #8f0b57;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}  
+.divo li{
+	display:inline;
+	margin: 0 20px;
+	}
+.divo Ul{
+	background-color:#8f0b57;
+	border-radius:25px;
+}
+.divo a:hover{
+	background-color:#ffaadc;
+	}
+.divo a{
+	color:#ffffff; text-decoration:none;
+	font-weight: bold;
+    font-size: 15px;
+	}
+
+
+.divo1{
+    background-color: #fffee0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px ;
+    max-width: 1200px;
+    }
+
+.divo1 h1 , .divo1 h2{
+    grid-column: 1 / -1; 
+    text-align: center;
+    color: #8f0b57;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+} 
+.divo1 table { 
+    width: 100%; 
+    margin-top: 20px;
+    border-radius: 25px;
+    border-collapse: collapse; 
+  }
+.divo1 th, .divo1 td { 
+    border: 1px solid #DDF7F0; 
+    padding: 8px;
+    text-align: center;
+ }
+ .divo1 th{
+	background-color:#DDF7F0;
+	color:#38b688;
+}
+.divo1 a:hover{
+	background-color:#ffaadc;
+	}
+.divo1 a{
+	color:#38b688; text-decoration:none;
+	font-weight: bold;
+    font-size: 15px;
+	}
+#a{
+	color:#38b688; text-decoration:none;
+	font-weight: bold;
+    font-size: 15px;
+}
