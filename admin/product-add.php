@@ -1,25 +1,34 @@
 <?php
-session_start();
+require_once '../config.php';
+
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../login.php');
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $description = $_POST['description'];
-    
-    $image = '';
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $target = '../uploads/' . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $target);
-        $image = 'uploads/' . $_FILES['image']['name'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $price = isset($_POST['price']) ? $_POST['price'] : 0;
+    $category = isset($_POST['category']) ? substr(trim($_POST['category']), 0, 20) : '';
+    $description = isset($_POST['description']) ? $_POST['description'] : '';
+    $stock = isset($_POST['stock']) ? $_POST['stock'] : 0;
+    $featured = isset($_POST['featured']) ? 1 : 0;
+
+    $image_url = '';
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../uploads/';
+        if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+        $imageName = time() . '_' . basename($_FILES['image']['name']);
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $imageName)) {
+            $image_url = 'uploads/' . $imageName;
+        }
     }
-    
-    $stmt = $pdo->prepare("INSERT INTO products (name, price, description, image) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$name, $price, $description, $image]);
-    header('Location: products.php');
+
+    $stmt = $pdo->prepare("INSERT INTO products (name, price, category, description, stock, featured, image_url) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute(array($name, $price, $category, $description, $stock, $featured, $image_url));
+
+    header('Location: productad.php');
     exit;
 }
 ?>
